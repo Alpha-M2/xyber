@@ -1,4 +1,4 @@
-# Xyber Documentation RAG Chatbot
+# Xyber Documentation Chatbot
 
 A RAG chatbot for Xyber documentation with a modern web interface and Telegram bot integration.
 
@@ -126,44 +126,11 @@ xyber-chatbot/
 └── README.md             # This file
 ```
 
-### Cloud Deployment
-
-The application is designed for easy deployment to:
-- **AWS**: Lambda + API Gateway compatible
-- **Google Cloud**: Cloud Run support
-- **Azure**: App Service compatible
-- **Self-Hosted**: Docker or systemd
-
-### Health Check
-```
-GET /health
-```
-
-### Query
-```
-POST /query
-Content-Type: application/json
-
-{
-  "question": "How do I install Xyber?",
-  "k": 5
-}
-```
-
 ### Statistics
 ```
 GET /stats
 ```
 
-### Ingest Documents
-```
-POST /ingest
-Content-Type: application/json
-
-{
-  "clear_first": true
-}
-```
 
 ## 🔄 Architecture
 
@@ -180,25 +147,6 @@ Content-Type: application/json
 └─────────────────────────────────────────┘
          ↓              ↓
     Xyber Docs      Semantic Search
-```
-
-### API Key Issues
-```bash
-# Check if .env exists
-ls -la .env
-
-# Verify keys are not empty
-grep "GROQ_API_KEY" .env
-grep "TELEGRAM_BOT_TOKEN" .env
-```
-
-### No Documents Found
-```bash
-# Re-ingest documentation
-python main.py ingest --clear --depth 5
-
-# Check status
-python main.py stats
 ```
 
 ### Connection Issues
