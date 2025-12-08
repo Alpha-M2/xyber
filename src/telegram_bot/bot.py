@@ -147,4 +147,14 @@ async def run_telegram_bot():
 
 def run_telegram_bot_sync():
     """Run the Telegram bot synchronously."""
-    asyncio.run(run_telegram_bot())
+    # Use the blocking run_polling() runner so the process stays alive
+    # and handlers (e.g. /start) continue to receive updates.
+    application = Application.builder().token(settings.telegram_bot_token).build()
+    bot = XyberTelegramBot()
+    # Attach the application and register handlers
+    bot.application = application
+    bot.setup_handlers()
+
+    logger.info("Starting Telegram bot (blocking run_polling)...")
+    # This is a blocking call that handles initialization and polling lifecycle
+    application.run_polling(allowed_updates=Update.ALL_TYPES)

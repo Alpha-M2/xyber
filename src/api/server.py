@@ -4,7 +4,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 from src.api.models import QueryRequest
 from src.config import settings
@@ -78,17 +78,18 @@ async def query(request: QueryRequest):
     return result
 
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 async def root():
     """Serve the web UI."""
     web_dir = Path(__file__).parent.parent / "web"
     index_path = web_dir / "index.html"
 
-    if index_path.exists():
-        return FileResponse(index_path)
-    else:
-        logger.warning("index.html not found")
-        return "<h1>Web UI not found. Please check web directory.</h1>"
+    if not index_path.exists():
+        logger.warning("index.html not found at %s", index_path)
+        return {"message": "Web UI not configured"}
+
+    with open(index_path) as f:
+        return f.read()
 
 
 def run_server():
@@ -99,6 +100,7 @@ def run_server():
         app,
         host=settings.host,
         port=settings.port,
+        reload=settings.debug,
         log_level=settings.log_level.lower(),
     )
 

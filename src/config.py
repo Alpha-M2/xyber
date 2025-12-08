@@ -1,6 +1,7 @@
 """Configuration management for Xyber Chatbot."""
 
 from pathlib import Path
+from typing import Optional
 
 from pydantic_settings import BaseSettings
 
@@ -8,9 +9,9 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     """Application settings from environment variables."""
 
-    # Essential configuration (optional at import-time)
-    groq_api_key: [str] = None
-    telegram_bot_token: [str] = None
+    # Essential configuration
+    groq_api_key: Optional[str] = None
+    telegram_bot_token: Optional[str] = None
     xyber_docs_url: str = "https://docs.xyber.inc/"
     chroma_db_path: Path = Path("./data/chroma_db")
     chunk_size: int = 1000
@@ -28,6 +29,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = False
+        extra = "ignore"
 
 
 # Global settings instance

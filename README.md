@@ -1,18 +1,6 @@
 # Xyber Documentation RAG Chatbot
 
-A production-ready Retrieval-Augmented Generation (RAG) chatbot for Xyber documentation with a modern web interface and Telegram bot integration.
-
-## 🚀 Features
-
-- **Intelligent Document Search**: Uses ChromaDB vector store with semantic search
-- **RAG Pipeline**: Powered by GROQ's Llama 3 8B for accurate answers based on documentation
-- **Web UI**: Modern, responsive HTML/CSS/JS interface
-- **Telegram Bot**: Full integration for on-the-go access
-- **Environment Configuration**: Secure secrets management via `.env`
-- **Production Ready**: Clean architecture supporting scaling and future expansion
-- **Streaming Ready**: Built for easy streaming response integration
-- **Citation Tracking**: Maintains source references for all answers
-- **Comprehensive Logging**: Debug and monitor all operations
+A RAG chatbot for Xyber documentation with a modern web interface and Telegram bot integration.
 
 ## 📋 Requirements
 
@@ -138,55 +126,13 @@ xyber-chatbot/
 └── README.md             # This file
 ```
 
-## 🔧 Configuration
-
-All configuration is managed via `.env` file. Key settings:
-
-```env
-# API Keys (Required)
-GROQ_API_KEY=your_key_here
-TELEGRAM_BOT_TOKEN=your_token_here
-
-# Server
-HOST=0.0.0.0
-PORT=8000
-DEBUG=true
-
-# Document Processing
-XYBER_DOCS_URL=https://docs.xyber.inc/
-MAX_CRAWL_DEPTH=5
-CHUNK_SIZE=1000
-CHUNK_OVERLAP=200
-
-# RAG Settings
-RETRIEVE_K=5
-TEMPERATURE=0.3
-MAX_TOKENS=2048
-
-# Features
-ENABLE_CITATIONS=true
-ENABLE_STREAMING=false
-```
-
-## 🚀 Deployment
-
-### Docker (Coming Soon)
-
-```bash
-docker build -t xyber-chatbot .
-docker run -p 8000:8000 --env-file .env xyber-chatbot
-```
-
 ### Cloud Deployment
 
 The application is designed for easy deployment to:
-- **Heroku**: Use Procfile (to be created)
 - **AWS**: Lambda + API Gateway compatible
 - **Google Cloud**: Cloud Run support
 - **Azure**: App Service compatible
 - **Self-Hosted**: Docker or systemd
-
-## 📚 API Reference
 
 ### Health Check
 ```
@@ -236,21 +182,6 @@ Content-Type: application/json
     Xyber Docs      Semantic Search
 ```
 
-## 🎯 Features Roadmap
-
-- [ ] Streaming responses
-- [ ] Response citations with links
-- [ ] User authentication
-- [ ] Conversation history
-- [ ] Advanced filters and search
-- [ ] Multi-language support
-- [ ] Rate limiting
-- [ ] Analytics dashboard
-- [ ] Document upload UI
-- [ ] Custom document collections
-
-## 🐛 Troubleshooting
-
 ### API Key Issues
 ```bash
 # Check if .env exists
@@ -296,19 +227,6 @@ tail -f logs/*.log
 grep "ERROR" logs/*.log
 ```
 
-## 🤝 Contributing
-
-Contributions welcome! Areas for improvement:
-- Additional document source formats
-- Performance optimization
-- New interface implementations
-- Deployment templates
-- Testing coverage
-
-## 📄 License
-
-MIT License - See LICENSE file
-
 ## 🙏 Acknowledgments
 
 - GROQ for Llama 3 API
@@ -316,15 +234,5 @@ MIT License - See LICENSE file
 - ChromaDB for vector storage
 - FastAPI for web framework
 - python-telegram-bot for Telegram integration
-
-## 📧 Support
-
-For issues, questions, or suggestions:
-1. Check existing GitHub issues
-2. Review the troubleshooting section
-3. Check logs in `logs/` directory
-4. Create a new GitHub issue with details
-
----
 
 **Made by Alpha-M2 for Xyber Documentation**

@@ -1,11 +1,15 @@
 """Document crawler for Xyber documentation."""
 
 import asyncio
-from typing import List, Optional, Set
+from typing import Dict, List, Optional, Set
 from urllib.parse import urljoin, urlparse
 
 import aiohttp
 from bs4 import BeautifulSoup
+
+from src.utils.logger import setup_logger
+
+logger = setup_logger(__name__)
 
 
 class DocumentCrawler:
@@ -99,14 +103,10 @@ class DocumentCrawler:
 
         return results
 
-    async def crawl(self) -> dict:
+    async def crawl(self) -> Dict[str, str]:
         """Start the crawling process."""
-        # ...existing code...
-
         async with aiohttp.ClientSession() as session:
             results = await self.crawl_depth(session, self.base_url, 0)
-
-        # ...existing code...
         return results
 
 
