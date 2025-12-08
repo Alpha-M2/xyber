@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     # Essential configuration
     groq_api_key: Optional[str] = None
     telegram_bot_token: Optional[str] = None
+    # GROQ model id to use (set via GROQ_MODEL in .env). Update if a model is decommissioned.
+    groq_model: str = "llama-3.1-8b-instant"
     xyber_docs_url: str = "https://docs.xyber.inc/"
     chroma_db_path: Path = Path("./data/chroma_db")
     chunk_size: int = 1000

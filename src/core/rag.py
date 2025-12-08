@@ -22,7 +22,7 @@ class RAGPipeline:
         # Initialize GROQ LLM
         try:
             self.llm = ChatGroq(
-                model="llama3-8b-8192",
+                model=settings.groq_model,
                 temperature=settings.temperature,
                 max_tokens=settings.max_tokens,
                 groq_api_key=settings.groq_api_key,
