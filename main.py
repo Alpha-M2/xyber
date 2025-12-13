@@ -28,15 +28,6 @@ def ingest_cmd(depth: int = None) -> None:
     print(f"Ingested {chunks} chunks.")
 
 
-def web_cmd(host: str = None, port: int = None) -> None:
-    host = host or settings.host
-    port = port or settings.port
-    import uvicorn
-
-    print(f"Starting web server at http://{host}:{port}")
-    uvicorn.run("src.api.server:app", host=host, port=port, reload=settings.debug)
-
-
 def telegram_cmd() -> None:
     from src.telegram_bot.bot import run_telegram_bot_sync
 
@@ -59,9 +50,7 @@ def main():
     sub.add_parser("init")
     ingest_p = sub.add_parser("ingest")
     ingest_p.add_argument("--depth", type=int, default=None)
-    web_p = sub.add_parser("web")
-    web_p.add_argument("--host", default=None)
-    web_p.add_argument("--port", type=int, default=None)
+    # only telegram + ingestion supported now
     sub.add_parser("telegram")
     sub.add_parser("stats")
 
@@ -71,8 +60,6 @@ def main():
         init_cmd()
     elif args.cmd == "ingest":
         ingest_cmd(depth=getattr(args, "depth", None))
-    elif args.cmd == "web":
-        web_cmd(host=getattr(args, "host", None), port=getattr(args, "port", None))
     elif args.cmd == "telegram":
         telegram_cmd()
     elif args.cmd == "stats":

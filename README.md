@@ -1,6 +1,6 @@
-# Xyber Documentation Chatbot
+# Xyber Documentation Chatbot (Telegram-only)
 
-A RAG chatbot for Xyber documentation with a modern web interface and Telegram bot integration.
+A lightweight RAG chatbot for Xyber documentation with Telegram bot integration.
 
 ## 📋 Requirements
 
@@ -41,37 +41,20 @@ python main.py init
 
 ## 💻 Usage
 
-### Web Interface (Recommended for Development)
-
-```bash
-# Start the web server
-python main.py web
-
-# Visit http://localhost:8000
-```
-
-The web UI includes:
-- Real-time chat interface
-- Document ingestion trigger
-- Statistics dashboard
-- Source attribution
-- Health status monitor
-
 ### Telegram Bot
 
-```bash
-# Start the bot
-python main.py telegram
+Start the bot locally (blocking):
 
-# Send messages to your bot on Telegram
+```bash
+python main.py telegram
 ```
 
-Bot commands:
+Then send messages to your bot on Telegram. Available commands:
 - `/start` - Welcome message
 - `/help` - Show help
 - `/stats` - Database statistics
 - `/clear` - Clear context
-- Any question - Get RAG response
+- Any question - Get a RAG response
 
 ### Ingest Documentation
 
@@ -89,7 +72,7 @@ python main.py stats
 ### Development Mode
 
 ```bash
-# Run everything with hot-reload
+# Run the bot in development mode if available
 python main.py dev
 ```
 
@@ -98,9 +81,6 @@ python main.py dev
 ```
 xyber-chatbot/
 ├── src/
-│   ├── api/              # FastAPI backend
-│   │   ├── models.py     # Pydantic request/response models
-│   │   └── server.py     # FastAPI application
 │   ├── core/             # RAG pipeline
 │   │   └── rag.py        # RAG implementation
 │   ├── ingestion/        # Document processing
@@ -108,10 +88,6 @@ xyber-chatbot/
 │   │   └── store.py      # ChromaDB vector store
 │   ├── telegram_bot/     # Telegram integration
 │   │   └── bot.py        # Telegram bot handler
-│   ├── web/              # Web UI
-│   │   ├── index.html    # Frontend
-│   │   ├── styles.css    # Styling
-│   │   └── script.js     # JavaScript logic
 │   ├── utils/            # Utilities
 │   │   ├── cli.py        # CLI commands
 │   │   ├── logger.py     # Logging setup
@@ -149,13 +125,13 @@ GET /stats
     Xyber Docs      Semantic Search
 ```
 
-### Connection Issues
+### Connection & Logs
 ```bash
-# Check health
-curl http://localhost:8000/health
-
 # View logs
 tail -f logs/*.log
+
+# Search for errors
+grep "ERROR" logs/*.log
 ```
 
 ## 📝 Logging
@@ -180,7 +156,6 @@ grep "ERROR" logs/*.log
 - GROQ for Llama 3 API
 - LangChain for RAG framework
 - ChromaDB for vector storage
-- FastAPI for web framework
 - python-telegram-bot for Telegram integration
 
 **Made by Alpha-M2 for Xyber Documentation**
