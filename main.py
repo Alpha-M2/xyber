@@ -1,7 +1,4 @@
-"""Main entry point for Xyber Chatbot.
-
-Provides a minimal CLI using argparse to run core actions without extra deps.
-"""
+"Xyber Chatbot"
 
 import argparse
 import asyncio

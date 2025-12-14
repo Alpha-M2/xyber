@@ -1,7 +1,7 @@
 [project]
 name = "xyber"
 version = "0.1.0"
-description = "Add your description here"
+description = "Test chatbot of a project's doc"
 readme = "README.md"
 requires-python = ">=3.11.14"
 dependencies = [
