@@ -3,6 +3,7 @@
 import asyncio
 
 from telegram import Update
+from telegram import error as tg_error
 from telegram.ext import (
     Application,
     CommandHandler,
@@ -50,19 +51,7 @@ class XyberTelegramBot:
 
         if not question:
             return
-
-        # Check message length
-        if len(question) > 1000:
-            await update.message.reply_text(
-                "❌ Message too long. Please keep your question under 1000 characters."
-            )
-            return
-
-        logger.info(f"Query from {user_name} ({user_id}): {question[:100]}")
-
-        # Show typing indicator
-        await update.message.chat.send_action("typing")
-
+        # Process query through RAG pipeline
         try:
             # Process query through RAG pipeline
             result = await asyncio.wait_for(
@@ -127,17 +116,6 @@ class XyberTelegramBot:
 
         self.setup_handlers()
 
-        logger.info("Starting Telegram bot...")
-        await self.application.initialize()
-        await self.application.start()
-        await self.application.updater.start_polling(allowed_updates=Update.ALL_TYPES)
-
-        logger.info("Telegram bot is running")
-
-        # Keep running until stopped
-        await self.application.updater.stop()
-        await self.application.stop()
-
 
 async def run_telegram_bot():
     """Run the Telegram bot."""
@@ -156,5 +134,3 @@ def run_telegram_bot_sync():
     bot.setup_handlers()
 
     logger.info("Starting Telegram bot (blocking run_polling)...")
-    # This is a blocking call that handles initialization and polling lifecycle
-    application.run_polling(allowed_updates=Update.ALL_TYPES)
