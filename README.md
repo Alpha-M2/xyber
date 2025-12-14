@@ -12,7 +12,7 @@ python main.py init
 
 ### Telegram Bot
 
-Start the bot locally (blocking):
+Start the bot locally:
 
 ```bash
 python main.py telegram
