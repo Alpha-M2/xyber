@@ -6113,3 +6113,6 @@ Traceback (most recent call last):
   File "/Users/user/Desktop/PythonProjects/xyber/.venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
     raise exception
 telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-12-14 11:49:05,980 - INFO - Query from Alpha_M2♟️👾 (2071897025): keep it simple, what is xyber?
+2025-12-14 11:49:06,523 - INFO - Processing query: keep it simple, what is xyber?
+2025-12-14 11:49:07,536 - INFO - Response sent to Alpha_M2♟️👾

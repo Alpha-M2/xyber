@@ -1,6 +1,8 @@
-# My First Realtest Telegram chatbot
+# First Real test Telegram chatbot
 
 A lightweight RAG chatbot for Xyber documentation with Telegram bot integration.
+
+TG link: @Xyberchatbot
 
 ### Initialize Project
 
